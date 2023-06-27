@@ -14,7 +14,7 @@
 2. Step 2: yarn
 3. Step 3: yarn start
 
-**Remember to run both front-end and back-end at the same time**
+**_Remember to run both front-end and back-end at the same time_**
 
 ## Requirements
 
@@ -23,13 +23,10 @@
 1. Create a server
 2. Connect to database
 3. Create at least 5 products in Database by POST methods
-
-the front end can get list of product
-user can register
-user can log in with password and email
-user can update his/her information (for example: userName)
-user can make order in front-end then send order information to database
-user can display his/her orders
+4. Create a route that allow user can get list of products
+5. Create a route that allow user can register, log in with password and email
+6. Create a route that allow user can make order in front-end then send order information to database
+   user can display his/her orders
 
 ### Front-end
 
@@ -39,4 +36,4 @@ Use Redux Toolkit to get data
 
 Styling library: free to choose
 
-MAKE THE WEBSITE AS BEAUTIFUL AS MUCH AS YOU CAN
+**_MAKE THE WEBSITE AS BEAUTIFUL AS MUCH AS YOU CAN_**
