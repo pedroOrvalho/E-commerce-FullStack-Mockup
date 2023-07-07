@@ -27,7 +27,7 @@
 5. Create a route that allow user can get product detail
 6. Create a route that allow user can register, log in with password and email
 7. Create a route that allow user can make order in front-end then send order information to database
-8. user can display his/her orders
+8. User can display his/her orders
 
 ### Front-end
 
@@ -38,3 +38,5 @@ The website has at least these pages: landing page, product page, product detail
 - Styling library: free to choose
 
 **_MAKE THE WEBSITE AS BEAUTIFUL AS MUCH AS YOU CAN_**
+
+**_DEADLINE 28/07/2023_**
