@@ -35,9 +35,9 @@ export const getProductByIdService = async (
 
 export const updateProductByIdService = async (
   productId: string,
-  updatedInformation: Partial<ProductDocument>
+  updatedInfo: Partial<ProductDocument>
 ): Promise<ProductDocument | undefined> => {
-  const product = await Product.findByIdAndUpdate(productId, updatedInformation, {
+  const product = await Product.findByIdAndUpdate(productId, updatedInfo, {
     new: true,
   });
   try {
