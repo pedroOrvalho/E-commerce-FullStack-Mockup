@@ -1,41 +1,55 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import User from "../models/user";
 import {
   createUserService,
   updateUserByIdService,
   deleteUserByIdService,
-} from "../services/user";
+} from "../services/users";
 
-export const createUser = async (req: Request, res: Response) => {
+export const createUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const userInformation = new User({
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
+    password: req.body.email,
   });
-  const user = await createUserService(userInformation);
-  res.status(200).json(user);
+  try {
+    const user = await createUserService(userInformation);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const updateUserInfoById = async (req: Request, res: Response) => {
+export const updateUserInfoById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const userId = req.params.id;
   const userNewInfo = req.body;
   try {
     const user = await updateUserByIdService(userId, userNewInfo);
     res.status(200).json(user);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: `Could not update user info with id: ${userId}.` });
+    next(error);
   }
 };
 
-export const deleteUserById = async (req: Request, res: Response) => {
+export const deleteUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const userId = req.params.id;
   try {
     await deleteUserByIdService(userId);
-    res.status(200).json()
+    res.status(200).json();
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };

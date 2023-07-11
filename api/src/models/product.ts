@@ -1,13 +1,22 @@
 import mongoose, { Document } from "mongoose";
 
-export type ProductDocument = Document & {
+export type ProductType = {
   title: string;
+  description: string;
   price: number;
+  material: string[];
+  color: string;
   image: string;
 };
 
-const ProductSchema = new mongoose.Schema({
+export type ProductDocument = Document & ProductType;
+
+export const ProductSchema = new mongoose.Schema({
   title: {
+    type: String,
+    required: true,
+  },
+  description: {
     type: String,
     required: true,
   },
@@ -15,9 +24,18 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  material: {
+    type: [String],
+    required: true,
+  },
+  color: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
+    required: true,
   },
 });
 
-export default mongoose.model<ProductDocument>("product", ProductSchema);
+export default mongoose.model<ProductDocument>("products", ProductSchema);
