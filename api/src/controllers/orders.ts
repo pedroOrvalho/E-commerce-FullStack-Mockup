@@ -10,7 +10,7 @@ export const createOrder = async (
 ) => {
   const newOrder = new Order({
     userId: req.params.id,
-    order: req.body
+    productList: req.body,
   });
   try {
     const order = await createOrderService(newOrder);

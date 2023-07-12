@@ -1,6 +1,6 @@
 import mongoose, { Document } from "mongoose";
 
-export type ProductType = {
+export type ProductDocument = Document & {
   title: string;
   description: string;
   price: number;
@@ -8,8 +8,6 @@ export type ProductType = {
   color: string;
   image: string;
 };
-
-export type ProductDocument = Document & ProductType;
 
 export const ProductSchema = new mongoose.Schema({
   title: {
@@ -26,11 +24,9 @@ export const ProductSchema = new mongoose.Schema({
   },
   material: {
     type: [String],
-    required: true,
   },
   color: {
     type: String,
-    required: true,
   },
   image: {
     type: String,

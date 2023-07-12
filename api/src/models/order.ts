@@ -1,7 +1,6 @@
 import mongoose, { Document } from "mongoose";
-import { ProductDocument, ProductSchema } from "./product";
 
-export type OrderProduct = {
+type OrderProductDocument = Document & {
   title: string;
   description: string;
   price: number;
@@ -11,20 +10,47 @@ export type OrderProduct = {
   quantity: number;
 };
 
+const OrderProductSchema = new mongoose.Schema({
+  title: {
+   type: String,
+   required: true,
+ },
+ description: {
+   type: String,
+   required: true,
+ },
+ price: {
+   type: Number,
+   required: true,
+ },
+ material: {
+   type: [String],
+ },
+ color: {
+   type: String,
+ },
+ image: {
+   type: String,
+   required: true,
+ },
+ quantity: {
+   type: Number, 
+   required: true}
+})
+
 export type OrderDocument = Document & {
   createdAt: Date;
-  order: ProductDocument[];
+  productList: OrderProductDocument[];
   userId: string;
 };
 
 const OrderSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
+    required: true,
     default: Date.now,
   },
-  order: {
-    type: [ProductSchema],
-  },
+  productList: [OrderProductSchema],
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",

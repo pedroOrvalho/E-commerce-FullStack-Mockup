@@ -13,6 +13,7 @@ app.use(cors());
 
 app.use("/products", productRouter);
 app.use("/users", userRouter, orderRouter);
+app.use("/orders", orderRouter);
 
 app.use(apiErrorHandler);
 

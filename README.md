@@ -24,7 +24,7 @@
 2. Connect to database
 3. Create at least 5 products in Database by POST methods
 4. Create a route that allow user can get list of products
-5. Create a route that allow user can get product detail
+5. Create a route that allow user ca∑n get product detail
 6. Create a route that allow user can register, log in with password and email
 7. Create a route that allow user can make order in front-end then send order information to database
 8. User can display his/her orders
