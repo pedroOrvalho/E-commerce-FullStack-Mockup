@@ -7,7 +7,20 @@ export const createUserService = async (
   return user.save();
 };
 
-export const updateUserByIdService = async (
+export const findUserByEmailService = async (
+  userEmail: string
+): Promise<UserDocument> => {
+  const foundUser = await User.findOne({ email: userEmail });
+  if (foundUser) {
+    return foundUser;
+  } else {
+    throw new NotFoundError(
+      `Could not find user with email in the database.`
+    );
+  }
+};
+
+export const updateUserInfoService = async (
   userId: string,
   userInfo: Partial<UserDocument>
 ): Promise<UserDocument> => {
@@ -18,7 +31,7 @@ export const updateUserByIdService = async (
     return await user;
   } else {
     throw new NotFoundError(
-      `Could not update user with id ${userId} from the database.ƒ`
+      `Could not update user with id ${userId} from the database.`
     );
   }
 };
