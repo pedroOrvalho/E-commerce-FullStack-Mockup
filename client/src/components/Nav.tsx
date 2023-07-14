@@ -10,20 +10,48 @@ export default function Nav() {
   return (
     <Paper>
       <div className="nav_container">
-        <Stack sx={{ marginLeft: "5rem" }} direction={"row"} spacing={1}>
-          <Link to="/">
-            <button>Home</button>
+        <Stack
+          sx={{ marginLeft: "3rem", height: "4rem" }}
+          direction={"row"}
+          spacing={3}
+        >
+          <Link className="nav_link" to="/">
+            <IconButton
+              disableFocusRipple
+              style={{ backgroundColor: "transparent", height: "4rem" }}
+            >
+              <p>Home</p>
+            </IconButton>
           </Link>
-          <Link to="/products">
-            <button>Shop</button>
+          <Link className="nav_link" to="/products">
+            <IconButton
+              disableFocusRipple
+              style={{ backgroundColor: "transparent", height: "4rem" }}
+            >
+              <p>Shop</p>
+            </IconButton>
           </Link>
-          <button>Events</button>
-          <button>About</button>
+          <Link className="nav_link" to="/workshops">
+            <IconButton
+              disableFocusRipple
+              style={{ backgroundColor: "transparent", height: "4rem" }}
+            >
+              <p>Workshops</p>
+            </IconButton>
+          </Link>
+          <Link className="nav_link" to="/about">
+            <IconButton
+              disableFocusRipple
+              style={{ backgroundColor: "transparent", height: "4rem" }}
+            >
+              <p>About</p>
+            </IconButton>
+          </Link>
         </Stack>
-        <Box sx={{ marginLeft: "-3rem" }}>
+        <Box sx={{ marginLeft: "-16rem" }}>
           <h1>Terra Quente</h1>
         </Box>
-        <Stack sx={{ marginRight: "5rem" }} direction={"row"} spacing={1}>
+        <Stack sx={{ marginRight: "3rem" }} direction={"row"} spacing={2}>
           <IconButton>
             <SearchOutlinedIcon />
           </IconButton>
