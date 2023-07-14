@@ -3,15 +3,15 @@ import { Router } from "express";
 import passport from "passport";
 import {
   createUser,
-  logInWithPassword,
+  logInWithEmail,
   updateUserInfo,
   deleteUserById,
 } from "../controllers/users";
 
 const router = Router();
 
-router.post("/", createUser);
-router.post("/login", logInWithPassword);
+router.post("/signIn", createUser);
+router.post("/login", logInWithEmail);
 router.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),

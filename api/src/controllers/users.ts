@@ -1,14 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 import User from "../models/user";
 import {
   createUserService,
+  findUserByEmailService,
   updateUserInfoService,
   deleteUserByIdService,
-  findUserByEmailService,
 } from "../services/users";
+import { UnauthorizedError } from "../helpers/apiError";
 
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -18,12 +20,18 @@ export const createUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const userInformation = new User({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.email,
-  });
   try {
+    const { username, email, password } = req.body;
+    
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const userInformation = new User({
+      username: username,
+      email: email,
+      password: hashedPassword,
+    });
+
     const newUser = await createUserService(userInformation);
     res.status(200).json(newUser);
   } catch (error) {
@@ -31,7 +39,7 @@ export const createUser = async (
   }
 };
 
-export const logInWithPassword = async (
+export const logInWithEmail = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -39,16 +47,27 @@ export const logInWithPassword = async (
   try {
     const userData = await findUserByEmailService(req.body.email);
     if (userData) {
+      const databaseHashedPassword = userData.password;
+      const isCorrectPassword = await bcrypt.compare(
+        req.body.password,
+        databaseHashedPassword
+      );
+
+      if (!isCorrectPassword) {
+        throw new UnauthorizedError();
+      }
+
       const token = jwt.sign(
         { email: userData.email, _id: userData._id },
         JWT_SECRET,
         { expiresIn: "30m" }
       );
-      res.json({ userData, token });
+      res.json({ userData, token, isCorrectPassword });
+    } else {
+      res.status(403).json({
+        message: "You don't have an account yet, please register first.",
+      });
     }
-    res.status(403).json({
-      message: "You don't have an account yet, please register first.",
-    });
   } catch (error) {
     next(error);
   }
