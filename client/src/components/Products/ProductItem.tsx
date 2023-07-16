@@ -9,14 +9,20 @@ type ProductItemProps = {
 };
 
 export default function ProductItem({ product }: ProductItemProps) {
-  console.log(product._id)
   return (
     <div className="product_container">
       <Link to={`/products/${product._id}`}>
         <img src={productImage} alt={product.title} width={"450px"} />
       </Link>
-      <p>{product.title}</p>
-      <p>{product.price}</p>
+      <div className="product_info_container">
+        <div className="product_info">
+          <p>{product.title}</p>
+          <p>{product.category}</p>
+        </div>
+        <div className="product_price">
+          <p>{product.price} €</p>
+        </div>
+      </div>
     </div>
   );
 }

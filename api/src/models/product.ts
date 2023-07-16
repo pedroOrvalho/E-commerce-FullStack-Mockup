@@ -3,10 +3,11 @@ import mongoose, { Document } from "mongoose";
 export type ProductDocument = Document & {
   title: string;
   description: string;
+  category: string;
   price: number;
   material: string[];
   color: string;
-  image: string;
+  image: string[];
 };
 
 export const ProductSchema = new mongoose.Schema({
@@ -15,6 +16,10 @@ export const ProductSchema = new mongoose.Schema({
     required: true,
   },
   description: {
+    type: String,
+    required: true,
+  },
+  category: {
     type: String,
     required: true,
   },
@@ -29,7 +34,7 @@ export const ProductSchema = new mongoose.Schema({
     type: String,
   },
   image: {
-    type: String,
+    type: [String],
     required: true,
   },
 });

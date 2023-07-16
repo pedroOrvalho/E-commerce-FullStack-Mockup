@@ -13,10 +13,11 @@ const initialState: InitialState = {
     _id: "",
     title: "",
     description: "",
+    category: "",
     price: 0,
     material: [],
     color: "",
-    image: "",
+    image: [],
   },
 };
 

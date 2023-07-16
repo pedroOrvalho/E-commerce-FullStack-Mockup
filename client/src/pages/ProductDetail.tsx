@@ -4,7 +4,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import { fetchProductById } from "../redux/thunk/products";
 import { useParams } from "react-router-dom";
 
-import productImage from "../images/image_cc236329-c3df-4336-a3c7-f92d32061a1a_600x.webp";
+import ProductSlider from "../components/Products/ProductSlider";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -14,12 +14,38 @@ export default function ProductDetail() {
   useEffect(() => {
     dispatch(fetchProductById(id));
   }, [id, dispatch]);
-  
+
   return (
-    <div>
-      <img src={productImage} alt={product.title} />
-      <p>{product.title}</p>
-      <p>{product.price}</p>
+    <div className="productDetail_container">
+      <div className="productDetail_slider_container">
+        <ProductSlider product={product} />
+      </div>
+      <div className="productDetail_info_container">
+        <div className="productDetail_info_header">
+          <h2>{product.category}</h2>
+          <h3>{product.title}</h3>
+          <p>{product.price} €</p>
+        </div>
+        <div className="product_Detail_description">
+          <p>{product.description}</p>
+        </div>
+        <div className="productDetail_info_color">
+          <h4>Color:</h4>
+          <p>{product.color}</p>
+        </div>
+        <div className="productDetail_info_material">
+          <h4>Material:</h4>
+          <p>{product.material}</p>
+        </div>
+        <div className="productDetail_buttons">
+          <button id="addToCart" className="productDetail_addToCart" >
+            add to cart
+          </button>
+          <button id="addToFavorites" className="productDetail_addToCart" >
+            add to favorites
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

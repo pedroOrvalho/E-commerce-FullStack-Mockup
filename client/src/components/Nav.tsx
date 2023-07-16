@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import { Box, Stack, IconButton, Paper } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
@@ -48,13 +47,10 @@ export default function Nav() {
             </IconButton>
           </Link>
         </Stack>
-        <Box sx={{ marginLeft: "-16rem" }}>
+        <Box sx={{ marginLeft: "-18rem" }}>
           <h1>Terra Quente</h1>
         </Box>
         <Stack sx={{ marginRight: "3rem" }} direction={"row"} spacing={2}>
-          <IconButton>
-            <SearchOutlinedIcon />
-          </IconButton>
           <IconButton>
             <AccountCircleOutlinedIcon />
           </IconButton>

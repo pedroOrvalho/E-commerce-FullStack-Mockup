@@ -17,6 +17,7 @@ export const createProduct = async (
   const newProduct = new Product({
     title: req.body.title,
     description: req.body.description,
+    category: req.body.category,
     price: req.body.price,
     material: req.body.material,
     color: req.body.color,
