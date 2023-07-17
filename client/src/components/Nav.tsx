@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
+import FavoritesDrawer from "./FavoritesDrawer";
+
 import { Box, Stack, IconButton, Paper } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 export default function Nav() {
@@ -51,12 +52,12 @@ export default function Nav() {
           <h1>Terra Quente</h1>
         </Box>
         <Stack sx={{ marginRight: "3rem" }} direction={"row"} spacing={2}>
-          <IconButton>
-            <AccountCircleOutlinedIcon />
-          </IconButton>
-          <IconButton>
-            <FavoriteBorderOutlinedIcon />
-          </IconButton>
+          <Link to={"/login"}>
+            <IconButton>
+              <AccountCircleOutlinedIcon />
+            </IconButton>
+          </Link>
+          <FavoritesDrawer />
           <IconButton>
             <ShoppingBagOutlinedIcon />
           </IconButton>

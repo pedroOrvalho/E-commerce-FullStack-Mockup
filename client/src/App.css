@@ -96,7 +96,7 @@
 .productlist_map_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 4% 4%;
+  gap: 60px 40px;
 }
 
 .product_container {
