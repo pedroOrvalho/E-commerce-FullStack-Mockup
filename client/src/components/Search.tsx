@@ -65,9 +65,9 @@ export default function Search({
           fullWidth
           sx={{
             "& .MuiInputLabel-root": {
-              color: "black", // Set the label color to black
+              color: "black", 
               "&.Mui-focused": {
-                color: "black", // Set the label color to black when focused
+                color: "black", 
               },
             },
             "& .MuiOutlinedInput-root": {

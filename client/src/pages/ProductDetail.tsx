@@ -1,19 +1,29 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
-import { fetchProductById } from "../redux/thunk/products";
 import { useParams } from "react-router-dom";
 
+import { fetchProductById } from "../redux/thunk/products";
+import { addOrRemoveFromFavorites } from "../redux/slices/favorites";
 import ProductSlider from "../components/Products/ProductSlider";
+import { Favorite } from "../types/type";
+import { addToCart } from "../redux/slices/cart";
 
 export default function ProductDetail() {
+  const dispatchThunk = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const { id } = useParams();
-  const dispatch = useDispatch<AppDispatch>();
   const product = useSelector((state: RootState) => state.products.product);
+  const favorites = useSelector((state: RootState) => state.favorites.favoritesList);
+  const isAlreadyFavorite = favorites.some((favorite) => favorite._id === product._id);
 
   useEffect(() => {
-    dispatch(fetchProductById(id));
-  }, [id, dispatch]);
+    dispatchThunk(fetchProductById(id));
+  }, [id, dispatchThunk]);
+
+  function handleFavorites(product: Favorite) {
+    dispatch(addOrRemoveFromFavorites(product));
+  }
 
   return (
     <div className="productDetail_container">
@@ -38,11 +48,19 @@ export default function ProductDetail() {
           <p>{product.material}</p>
         </div>
         <div className="productDetail_buttons">
-          <button id="addToCart" className="productDetail_addToCart" >
+          <button
+            id="addToCart"
+            className="productDetail_addToCart"
+            onClick={() => dispatch(addToCart({ ...product, quantity: 1 }))}
+          >
             add to cart
           </button>
-          <button id="addToFavorites" className="productDetail_addToCart" >
-            add to favorites
+          <button
+            id="addToFavorites"
+            className="productDetail_addToCart"
+            onClick={() => handleFavorites({ ...product, quantity: 1 })}
+          >
+            {isAlreadyFavorite ? "remove from favorites" : "add to favorites"}
           </button>
         </div>
       </div>

@@ -1,14 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import Products from "./pages/Products";
 
 import Nav from "./components/Nav";
 import HomePage from "./pages/HomePage";
-import Footer from "./components/Footer";
-import Register from "./pages/Register";
-
-import "./App.css";
+import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Cart from "./pages/Cart";
+import Footer from "./components/Footer";
+
+import "./App.css";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </div>
