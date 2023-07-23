@@ -1,6 +1,11 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+
 import { Box } from "@mui/material";
 
 export default function CartCheckout() {
+  const cart = useSelector(({ cart }: RootState) => cart.cart);
+
   return (
     <Box className="checkout_container">
       <Box

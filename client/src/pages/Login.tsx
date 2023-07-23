@@ -1,4 +1,10 @@
-import * as React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
+import { getUserInfo } from "../redux/slices/user";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,6 +18,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { RootState } from "../redux/store";
 
 function Copyright(props: any) {
   return (
@@ -31,23 +38,44 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+type User = {
+  email: string;
+  password: string;
+};
+
+const user: User = {
+  email: "",
+  password: "",
+};
+
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log(data);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const [userInfo, setUserInfo] = useState<User>(user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function onClickHandler() {
+    const endpoint = "http://localhost:4000/users/login";
+    axios
+      .post(endpoint, userInfo)
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(getUserInfo(res.data.userData));
+          localStorage.setItem("userToken", res.data.token);
+          localStorage.setItem("_id", res.data.userData._id);
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setUserInfo(user);
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs" sx={{ height:"70vh" }}>
+      <Container component="main" maxWidth="xs" sx={{ height: "70vh" }}>
         <CssBaseline />
         <Box
           sx={{
@@ -63,12 +91,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -78,6 +101,10 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={userInfo.email}
+              onChange={(event) =>
+                setUserInfo({ ...userInfo, email: event.target.value })
+              }
             />
             <TextField
               margin="normal"
@@ -85,19 +112,22 @@ export default function SignIn() {
               fullWidth
               name="password"
               label="Password"
-              type="password"
               id="password"
               autoComplete="current-password"
+              value={userInfo.password}
+              onChange={(event) =>
+                setUserInfo({ ...userInfo, password: event.target.value })
+              }
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, borderRadius: "0" }}
+              onClick={onClickHandler}
             >
               Sign In
             </Button>

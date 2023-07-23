@@ -1,10 +1,11 @@
-import * as React from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -15,12 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function Copyright(props: any) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {"Copyright © "}
       <Link color="inherit" href="#">
         Terra Quente
@@ -31,18 +27,41 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+type User = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
+
+const user: User = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+};
+
+export default function Register() {
+  const [userInfo, setUserInfo] = useState<User>(user);
+  const navigate = useNavigate();
+
+  function onClickHandler() {
+    const endpoint = "http://localhost:4000/users";
+
+    axios
+      .post(endpoint, userInfo)
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setUserInfo(user);
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -50,7 +69,8 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 9,
+            marginBottom: 10,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -62,12 +82,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -78,6 +93,10 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={userInfo.firstName}
+                  onChange={(event) =>
+                    setUserInfo({ ...userInfo, firstName: event.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -88,6 +107,10 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={userInfo.lastName}
+                  onChange={(event) =>
+                    setUserInfo({ ...userInfo, lastName: event.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +121,10 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={userInfo.email}
+                  onChange={(event) =>
+                    setUserInfo({ ...userInfo, email: event.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,24 +136,20 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
+                  value={userInfo.password}
+                  onChange={(event) =>
+                    setUserInfo({ ...userInfo, password: event.target.value })
                   }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, borderRadius: "0" }}
+              onClick={onClickHandler}
             >
-              Sign Up
+              Register
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
@@ -137,7 +160,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5, mb:5 }} />
+        <Copyright sx={{ mt: 5, mb: 5 }} />
       </Container>
     </ThemeProvider>
   );
