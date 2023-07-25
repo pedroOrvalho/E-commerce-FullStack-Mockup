@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
 import { getUserInfo } from "../redux/slices/user";
@@ -9,36 +9,14 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { RootState } from "../redux/store";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="#">
-        Terra Quente
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const defaultTheme = createTheme();
+import { Paper } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 type User = {
   email: string;
@@ -69,26 +47,49 @@ export default function SignIn() {
       })
       .catch((error) => {
         console.log(error);
+        if (error.response.status === 404) {
+          alert("Account not found. Please register, before login in.");
+          navigate("/register");
+          return;
+        }
       });
     setUserInfo(user);
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs" sx={{ height: "70vh" }}>
+    <Box>
+      <Container
+        component={Paper}
+        elevation={1}
+        maxWidth="xs"
+        sx={{
+          mt: 8,
+          mb: 8,
+          pt: 9,
+          pb: 9,
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: grey[900] }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{
+              fontFamily: "jost, sans-serif",
+              letterSpacing: "0.2rem",
+              fontWeight: 400,
+              color: "hsla(0, 0%, 9%, 0.729)",
+            }}
+          >
             Sign in
           </Typography>
           <Box sx={{ mt: 1 }}>
@@ -105,6 +106,23 @@ export default function SignIn() {
               onChange={(event) =>
                 setUserInfo({ ...userInfo, email: event.target.value })
               }
+              InputLabelProps={{
+                style: {
+                  color: grey[600],
+                },
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "&:hover fieldset": {
+                    borderColor: "inherit",
+                    borderWidth: 1,
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "inherit",
+                    borderWidth: 1,
+                  },
+                },
+              }}
             />
             <TextField
               margin="normal"
@@ -118,15 +136,39 @@ export default function SignIn() {
               onChange={(event) =>
                 setUserInfo({ ...userInfo, password: event.target.value })
               }
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              InputLabelProps={{
+                style: {
+                  color: grey[600],
+                },
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "&:hover fieldset": {
+                    borderColor: "inherit",
+                    borderWidth: 1,
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "inherit",
+                    borderWidth: 1,
+                  },
+                },
+              }}
             />
             <Button
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: "0" }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                borderRadius: "0",
+                textTransform: "capitalize",
+                letterSpacing: "0.2rem",
+                fontSize: "1rem",
+                bgcolor: "hsla(0, 0%, 0%, 1)",
+                "&:hover": {
+                  bgcolor: "hsla(0, 0%, 0%, 0.8)",
+                },
+              }}
               onClick={onClickHandler}
             >
               Sign In
@@ -145,8 +187,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </Box>
   );
 }

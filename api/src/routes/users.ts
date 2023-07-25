@@ -6,12 +6,18 @@ import {
   logInWithEmail,
   updateUserInfo,
   deleteUserById,
+  getUserById,
 } from "../controllers/users";
 
 const router = Router();
 
-router.post("/signIn", createUser);
+router.post("/", createUser);
 router.post("/login", logInWithEmail);
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  getUserById
+);
 router.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),

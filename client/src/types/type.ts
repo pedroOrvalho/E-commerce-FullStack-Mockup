@@ -39,3 +39,9 @@ export type User = {
   lastName: string;
   email: string;
 };
+
+export type Order = {
+  _id: string;
+  productList: CartProduct[];
+  createdAt: string;
+};

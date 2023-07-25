@@ -9,6 +9,7 @@ import {
   findUserByEmailService,
   updateUserInfoService,
   deleteUserByIdService,
+  getUserByIdService,
 } from "../services/users";
 import { UnauthorizedError } from "../helpers/apiError";
 
@@ -21,13 +22,14 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
-    const { username, email, password } = req.body;
-    
+    const { firstName, lastName, email, password } = req.body;
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const userInformation = new User({
-      username: username,
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: hashedPassword,
     });
@@ -54,20 +56,35 @@ export const logInWithEmail = async (
       );
 
       if (!isCorrectPassword) {
-        throw new UnauthorizedError();
+        throw new UnauthorizedError("Password is incorrect.");
       }
-
       const token = jwt.sign(
         { email: userData.email, _id: userData._id },
         JWT_SECRET,
-        { expiresIn: "30m" }
+        {
+          expiresIn: "30m",
+        }
       );
-      res.json({ userData, token, isCorrectPassword });
+      res.json({ userData, token });
     } else {
       res.status(403).json({
         message: "You don't have an account yet, please register first.",
       });
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const userId = req.params.id;
+  try {
+    const user = await getUserByIdService(userId);
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }

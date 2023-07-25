@@ -3,14 +3,6 @@
 }
 
 /*------------------------------ NAV ------------------------------*/
-.nav_container {
-  height: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: "Raleway", sans-serif;
-  background-color: rgba(26, 122, 65, 0.294);
-}
 .nav_link {
   text-decoration: none;
   position: relative;
@@ -274,7 +266,7 @@
 }
 
 .search_icon {
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 /*------------------------------ FAVORITES ------------------------------*/
@@ -402,42 +394,7 @@
   transform-origin: bottom left;
 }
 
-/*------------------------------ NO ITEMS CART ------------------------------*/
-
-.cart_noItems_container {
-  font-family: "jost", "sans-serif";
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.cart_noItems_container h1,
-.cart_noItems_container h2 {
-  font-weight: 500;
-  letter-spacing: 0.2rem;
-  color: hsla(0, 0%, 9%, 0.729);
-}
 /*------------------------------ CART ------------------------------*/
-
-.cart_container {
-  display: flex;
-  justify-content: center;
-  font-family: "jost", "sans-serif";
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.cart_container h1 {
-  font-weight: 500;
-  letter-spacing: 0.2rem;
-  color: hsla(0, 0%, 9%, 0.729);
-}
-
-.cartList_container {
-  margin: 40px 20px;
-  max-width: 900px;
-}
 
 .cartList_container th {
   font-family: "jost", "sans-serif";
@@ -466,9 +423,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 200px;
 }
 
 .cartItem_info h1 {
+  min-width: 200px;
   margin: 0 0;
   margin-bottom: 0px;
   font-weight: 400;
@@ -531,21 +490,3 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-
-/*------------------------------ CART CHECKOUT ------------------------------*/
-
-.checkout_container {
-  width: 400px;
-  margin: 40px 20px;
-}
-
-.checkout_subtotal_values {
-  text-align: end;
-}
-
-.checkout_estimatedTotal__container {
-  display: flex;
-  justify-content: space-between;
-}
-
-/*------------------------------ USER ACCOUNT ------------------------------*/

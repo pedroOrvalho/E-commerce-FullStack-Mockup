@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
 
 import "./App.css";
+import Order from "./pages/OrderList";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/my-profile" element={<UserProfile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/my-orders" element={<Order />} />
       </Routes>
       <Footer />
     </div>

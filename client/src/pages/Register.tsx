@@ -12,11 +12,17 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Paper } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 function Copyright(props: any) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {"Copyright © "}
       <Link color="inherit" href="#">
         Terra Quente
@@ -26,8 +32,6 @@ function Copyright(props: any) {
     </Typography>
   );
 }
-
-const defaultTheme = createTheme();
 
 type User = {
   firstName: string;
@@ -64,22 +68,39 @@ export default function Register() {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+    <Box>
+      <Container
+        component={Paper}
+        elevation={1}
+        maxWidth="xs"
+        sx={{
+          mt: 8,
+          mb: 8,
+          pt: 4,
+          pb: 4,
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 9,
-            marginBottom: 10,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: grey[900] }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{
+              fontFamily: "jost, sans-serif",
+              letterSpacing: "0.2rem",
+              fontWeight: 400,
+              color: "hsla(0, 0%, 9%, 0.729)",
+            }}
+          >
             Sign up
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
@@ -97,6 +118,23 @@ export default function Register() {
                   onChange={(event) =>
                     setUserInfo({ ...userInfo, firstName: event.target.value })
                   }
+                  InputLabelProps={{
+                    style: {
+                      color: grey[600],
+                    },
+                  }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -111,6 +149,23 @@ export default function Register() {
                   onChange={(event) =>
                     setUserInfo({ ...userInfo, lastName: event.target.value })
                   }
+                  InputLabelProps={{
+                    style: {
+                      color: grey[600],
+                    },
+                  }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -125,6 +180,23 @@ export default function Register() {
                   onChange={(event) =>
                     setUserInfo({ ...userInfo, email: event.target.value })
                   }
+                  InputLabelProps={{
+                    style: {
+                      color: grey[600],
+                    },
+                  }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -140,16 +212,44 @@ export default function Register() {
                   onChange={(event) =>
                     setUserInfo({ ...userInfo, password: event.target.value })
                   }
+                  InputLabelProps={{
+                    style: {
+                      color: grey[600],
+                    },
+                  }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
             <Button
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: "0" }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                borderRadius: "0",
+                textTransform: "capitalize",
+                letterSpacing: "0.2rem",
+                fontSize: "1rem",
+                bgcolor: "hsla(0, 0%, 0%, 1)",
+                "&:hover": {
+                  bgcolor: "hsla(0, 0%, 0%, 0.8)",
+                },
+              }}
               onClick={onClickHandler}
             >
-              Register
+              Create Account
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
@@ -160,8 +260,8 @@ export default function Register() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5, mb: 5 }} />
       </Container>
-    </ThemeProvider>
+      <Copyright sx={{ pt: 1, pb: 4 }} />
+    </Box>
   );
 }

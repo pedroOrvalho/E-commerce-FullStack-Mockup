@@ -1,10 +1,15 @@
 import { Router } from "express";
-import passport from "passport"
+import passport from "passport";
 
-import { createOrder } from "../controllers/orders";
+import { createOrder, getOrdersById } from "../controllers/orders";
 
 const router = Router();
 
-router.post("/", passport.authenticate("jwt", { session: false }), createOrder);
+router.post("/:id", passport.authenticate("jwt", { session: false }), createOrder);
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  getOrdersById
+);
 
 export default router;

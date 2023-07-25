@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { fetchUserById } from "../redux/thunk/user";
+import { getUserInfo } from "../redux/slices/user";
 
 import {
   Box,
@@ -12,12 +13,12 @@ import {
   Container,
   CssBaseline,
   Grid,
+  Paper,
   TextField,
   Typography,
 } from "@mui/material";
 
 import { User } from "../types/type";
-import { getUserInfo } from "../redux/slices/user";
 
 export default function UserProfile() {
   const userInfo = useSelector((state: RootState) => state.user.user);
@@ -27,7 +28,6 @@ export default function UserProfile() {
   const userId = localStorage.getItem("_id");
   const navigate = useNavigate();
   const token = localStorage.getItem("userToken");
-  console.log(userInfo);
 
   useEffect(() => {
     dispatchThunk(fetchUserById(userId));
@@ -75,19 +75,39 @@ export default function UserProfile() {
 
   return (
     <div>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component={Paper}
+        elevation={1}
+        maxWidth="xs"
+        sx={{
+          mt: 13,
+          mb: 13,
+          pt: 1,
+          pb: 1,
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 9,
-            marginBottom: 10,
+            marginTop: 2,
+            marginBottom: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            fontFamily: "jost, sans-serif",
           }}
         >
-          <Typography component="h1" variant="h5">
-            User Details
+          <Typography
+            component="h1"
+            variant="h3"
+            sx={{
+              fontFamily: "jost, sans-serif",
+              letterSpacing: "0.2rem",
+              fontWeight: 400,
+              color: "hsla(0, 0%, 9%, 0.729)",
+            }}
+          >
+            My Details
           </Typography>
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -100,6 +120,18 @@ export default function UserProfile() {
                   id="firstName"
                   value={userNewInfo.firstName}
                   onChange={handleFirstName}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -112,6 +144,18 @@ export default function UserProfile() {
                   id="lastName"
                   value={userNewInfo.lastName}
                   onChange={handleLastName}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -125,15 +169,37 @@ export default function UserProfile() {
                   value={userNewInfo.email}
                   onChange={handleEmail}
                   disabled
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "&:hover fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "inherit",
+                        borderWidth: 1,
+                      },
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
             <Button
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: "0" }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                borderRadius: "0",
+                textTransform: "capitalize",
+                letterSpacing: "0.2rem",
+                fontSize: "1rem",
+                bgcolor: "hsla(0, 0%, 0%, 1)",
+                "&:hover": {
+                  bgcolor: "hsla(0, 0%, 0%, 0.8)",
+                },
+              }}
               onClick={onClickHandler}
-
             >
               Save
             </Button>

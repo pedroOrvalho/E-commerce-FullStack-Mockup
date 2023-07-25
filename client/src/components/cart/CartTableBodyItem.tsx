@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import CartQtySelect from "./CartQtySelect";
 import { removeFromCart } from "../../redux/slices/cart";
 
-import { TableRow, TableCell } from "@mui/material";
+import { TableRow, TableCell, Box } from "@mui/material";
 
 import { CartProduct } from "../../types/type";
 
@@ -21,34 +21,28 @@ export default function CartTableBodyItem({ cartItem }: Props) {
   }
 
   return (
-    <TableRow sx={{ height: "100px" }} className="cartItem_container" key={cartItem._id}>
-      <TableCell
-        sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", height: "100px" }}
-        className="cartItem_image_container"
-      >
+    <TableRow sx={{}} className="cartItem_container">
+      <TableCell className="cartItem_image_container">
         <img src={pict} alt={cartItem.title} />
       </TableCell>
-      <TableCell
-        sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", height: "100px" }}
-        className="cartItem_info_container"
-      >
-        <div className="cartItem_info">
+      <TableCell sx={{ pl: 0, pr: 0, minWidth: "215px" }}>
+        <Box className="cartItem_info">
           <h1>{cartItem.title}</h1>
           <h2>{cartItem.category}</h2>
           <h3>{cartItem.color}</h3>
           <h3>{cartItem.material}</h3>
           <div className="cartItem_remove_container">
-            <button onClick={() => removeFromCartHandler(cartItem)}>Delete</button>
+            <button onClick={() => removeFromCartHandler(cartItem)}>
+              Delete
+            </button>
           </div>
-        </div>
+        </Box>
       </TableCell>
-      <TableCell sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", width: "100px" }} align="center">
-        {cartItem.price}
-      </TableCell>
-      <TableCell sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", width: "75px" }} align="center">
+      <TableCell align="center">{cartItem.price}</TableCell>
+      <TableCell sx={{ width: "75px" }} align="center">
         <CartQtySelect cartItem={cartItem} />
       </TableCell>
-      <TableCell sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", width: "75px" }} align="right">
+      <TableCell sx={{ width: "75px" }} align="right">
         {(cartItem.price * cartItem.quantity).toFixed(2)}
       </TableCell>
     </TableRow>

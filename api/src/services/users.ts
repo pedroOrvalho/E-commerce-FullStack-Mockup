@@ -4,7 +4,7 @@ import { NotFoundError } from "../helpers/apiError";
 export const createUserService = async (
   user: UserDocument
 ): Promise<UserDocument> => {
-  return user.save();
+  return await user.save();
 };
 
 export const findUserByEmailService = async (
@@ -14,9 +14,18 @@ export const findUserByEmailService = async (
   if (foundUser) {
     return foundUser;
   } else {
-    throw new NotFoundError(
-      `Could not find user with email in the database.`
-    );
+    throw new NotFoundError(`Could not find user with email in the database.`);
+  }
+};
+
+export const getUserByIdService = async (
+  userId: string
+): Promise<UserDocument> => {
+  const user = await User.findById(userId);
+  if (user) {
+    return user;
+  } else {
+    throw new NotFoundError(`Could not find user with id: ${userId}.`);
   }
 };
 
@@ -28,7 +37,7 @@ export const updateUserInfoService = async (
     new: true,
   });
   if (user) {
-    return await user;
+    return user;
   } else {
     throw new NotFoundError(
       `Could not update user with id ${userId} from the database.`

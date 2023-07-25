@@ -18,7 +18,7 @@ export const getProductByIdService = async (
   if (product) {
     return product;
   } else {
-    throw new NotFoundError(`Could not find product with id: ${productId} `);
+    throw new NotFoundError(`Could not find product with id: ${productId}.`);
   }
 };
 
@@ -32,7 +32,7 @@ export const updateProductByIdService = async (
   if (product) {
     return await product;
   } else {
-    throw new NotFoundError(`Could not update product with id: ${productId} `);
+    throw new NotFoundError(`Could not update product with id: ${productId}.`);
   }
 };
 
@@ -43,6 +43,6 @@ export const deleteProductByIdService = async (
   if (deletedProduct) {
     return deletedProduct;
   } else {
-    throw new NotFoundError(`Could not delete product with id: ${productId} `);
+    throw new NotFoundError(`Could not delete product with id: ${productId}.`);
   }
 };

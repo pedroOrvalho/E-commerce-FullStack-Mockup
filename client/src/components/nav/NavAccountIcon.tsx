@@ -4,7 +4,7 @@ import { IconButton, Menu, MenuItem } from "@mui/material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 
-export default function () {
+export default function NavAccountIcon() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,28 +29,48 @@ export default function () {
       <Menu
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: "center",
-          horizontal: "center",
+          vertical: "bottom",
+          horizontal: "left",
         }}
         keepMounted
         transformOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Link to={"/login"}>
-          <MenuItem onClick={handleClose}>Login</MenuItem>
+        <Link className="nav_link" to={"/login"}>
+          <MenuItem
+            sx={{ color: "hsla(0, 0%, 0%, 0.7)" }}
+            onClick={handleClose}
+          >
+            Login
+          </MenuItem>
         </Link>
-        <Link to={"/my-profile"}>
-          <MenuItem onClick={handleClose}>My Profile</MenuItem>
+        <Link className="nav_link" to={"/my-profile"}>
+          <MenuItem
+            sx={{ color: "hsla(0, 0%, 0%, 0.7)" }}
+            onClick={handleClose}
+          >
+            My Profile
+          </MenuItem>
         </Link>
-        <Link to={"/my-orders"}>
-          <MenuItem onClick={handleClose}>My Orders</MenuItem>
+        <Link className="nav_link" to={"/my-orders"}>
+          <MenuItem
+            sx={{ color: "hsla(0, 0%, 0%, 0.7)" }}
+            onClick={handleClose}
+          >
+            My Orders
+          </MenuItem>
         </Link>
-        <Link to={"/"}>
-          <MenuItem onClick={handlelogOutClose}>LogOut</MenuItem>
+        <Link className="nav_link" to={"/"}>
+          <MenuItem
+            sx={{ color: "hsla(0, 0%, 0%, 0.7)" }}
+            onClick={handlelogOutClose}
+          >
+            LogOut
+          </MenuItem>
         </Link>
       </Menu>
     </div>
