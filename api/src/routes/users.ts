@@ -23,6 +23,10 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   updateUserInfo
 );
-router.delete("/:id", deleteUserById);
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  deleteUserById
+);
 
 export default router;

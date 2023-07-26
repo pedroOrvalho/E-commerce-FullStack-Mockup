@@ -14,7 +14,7 @@ export const createOrder = async (
   });
   try {
     const order = await createOrderService(newOrder);
-    res.json(order);
+    res.status(200).json(order);
   } catch (error) {
     next(error);
   }

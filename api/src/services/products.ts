@@ -30,7 +30,7 @@ export const updateProductByIdService = async (
     new: true,
   });
   if (product) {
-    return await product;
+    return product;
   } else {
     throw new NotFoundError(`Could not update product with id: ${productId}.`);
   }
