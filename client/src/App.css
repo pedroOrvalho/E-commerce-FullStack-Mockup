@@ -118,23 +118,7 @@
 
 /*------------------------------ PRODUCT DETAIL ------------------------------*/
 
-.productDetail_container {
-  font-family: "jost", "sans-serif";
-  display: flex;
-  justify-content: center;
-  margin: 5% 20px;
-}
 
-.productDetail_slider_container img {
-  width: 100%;
-  max-width: 100%;
-}
-
-.productDetail_info_container {
-  width: 40rem;
-  margin-left: 100px;
-  letter-spacing: 0.2rem;
-}
 
 .productDetail_info_header h2 {
   margin: 0 0;
@@ -144,8 +128,8 @@
 
 .productDetail_info_header h3 {
   font-weight: 400;
-  font-size: 1.4rem;
-  color: hsla(0, 0%, 0%, 0.85);
+  font-size: 1.6rem;
+  color: hsla(0, 0%, 0%, 0.95);
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -198,63 +182,7 @@
   color: rgba(0, 0, 0, 0.655);
 }
 
-.productDetail_buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
 
-.productDetail_addToCart {
-  letter-spacing: 0.2rem;
-  align-items: center;
-  background-color: hsla(0, 0%, 0%, 0.855);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(255, 255, 255, 1);
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 16px;
-  font-weight: 400;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-}
-
-.productDetail_addToCart:hover,
-.productDetail_addToCart:focus {
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: rgba(255, 255, 255, 0.1) 0 4px 12px;
-  color: rgba(255, 255, 255, 1);
-}
-
-.productDetail_addToCart:active {
-  background-color: #181818;
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: rgba(255, 255, 255, 0.06) 0 2px 4px;
-  color: rgba(255, 255, 255, 0.65);
-  transform: translateY(0);
-}
-
-#addToCart {
-  margin-right: 10px;
-}
-
-#addToFavorites {
-  margin-left: 10px;
-  width: 16rem;
-  padding: 0 0;
-}
 /*------------------------------ SEARCH ------------------------------*/
 
 .search_container {

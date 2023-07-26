@@ -1,5 +1,7 @@
 import SimpleImageSlider from "react-simple-image-slider";
 
+import { Box } from "@mui/material";
+
 import { Product } from "../../types/type";
 
 type ProductSliderProps = {
@@ -10,7 +12,9 @@ export default function ProductSlider({ product }: ProductSliderProps) {
   const productImages = product.image;
 
   return (
-    <div className="product_slider">
+    <Box
+      sx={{ display: "flex", justifyContent: "center", alignContent: "center" }}
+    >
       <SimpleImageSlider
         width={570}
         height={570}
@@ -21,6 +25,6 @@ export default function ProductSlider({ product }: ProductSliderProps) {
         navMargin={20}
         useGPURender={true}
       />
-    </div>
+    </Box>
   );
 }
