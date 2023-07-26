@@ -62,7 +62,10 @@ export default function Register() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response.status === 500) {
+          alert("Your email is already registered. Please log in.");
+          navigate("/login");
+        }
       });
     setUserInfo(user);
   }

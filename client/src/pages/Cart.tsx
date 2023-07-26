@@ -31,7 +31,7 @@ export default function Cart() {
         display: { md: "block", lg: "flex" },
         fontFamily: "jost, sans-serif",
         mb: 12,
-        mt: 3,
+        mt: 5,
       }}
     >
       <CartWithItems />

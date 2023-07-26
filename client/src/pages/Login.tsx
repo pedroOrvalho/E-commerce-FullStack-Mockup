@@ -46,7 +46,6 @@ export default function SignIn() {
         }
       })
       .catch((error) => {
-        console.log(error);
         if (error.response.status === 404) {
           alert("Account not found. Please register, before login in.");
           navigate("/register");

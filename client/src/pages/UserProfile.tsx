@@ -30,7 +30,7 @@ export default function UserProfile() {
   const token = localStorage.getItem("userToken");
 
   useEffect(() => {
-    dispatchThunk(fetchUserById(userId));
+    dispatchThunk(fetchUserById(userId, navigate));
   }, [dispatchThunk, userId]);
 
   function handleFirstName(event: React.ChangeEvent<HTMLInputElement>) {
@@ -69,7 +69,11 @@ export default function UserProfile() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response.status === 401) {
+          alert("Please log in ");
+          navigate("/login");
+          return;
+        }
       });
   }
 

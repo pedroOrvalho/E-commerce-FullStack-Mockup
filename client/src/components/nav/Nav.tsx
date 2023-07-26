@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import FavoritesDrawer from "../FavoritesDrawer";
+import FavoritesDrawer from "../favorites/FavoritesDrawer";
 import NavAccountIcon from "./NavAccountIcon";
 import NavMenuIcon from "./NavMenuIcon";
 import NavLinks from "./NavLinks";

@@ -284,13 +284,6 @@
   text-transform: uppercase;
 }
 
-.favoritesList_container {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  margin-top: 5px;
-}
-
 .favoritesItem_container {
   display: grid;
   grid-template-columns: 1fr 2fr;
