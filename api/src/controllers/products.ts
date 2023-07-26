@@ -7,9 +7,13 @@ import {
   updateProductByIdService,
   deleteProductByIdService,
 } from "../services/products";
-import Product from "../models/product";
+import Product from "../models/Product";
 
-export const createProduct = async (req: Request, res: Response, next: NextFunction) => {
+export const createProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const newProduct = new Product({
     title: req.body.title,
     description: req.body.description,
@@ -27,7 +31,11 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
-export const getAllProducts = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const productList = await getAllProductsService();
     res.status(200).json(productList);
@@ -36,7 +44,11 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-export const getProductById = async (req: Request, res: Response, next: NextFunction) => {
+export const getProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const productId = req.params.id;
   try {
     const product = await getProductByIdService(productId);
@@ -54,8 +66,11 @@ export const updateProductById = async (
   const productId = req.params.id;
   const updatedInformation = req.body;
   try {
-    const product = await updateProductByIdService(productId, updatedInformation);
-    res.status(200).json(product);
+    const updatedProduct = await updateProductByIdService(
+      productId,
+      updatedInformation
+    );
+    res.status(200).json(updatedProduct);
   } catch (error) {
     next(error);
   }
@@ -69,7 +84,10 @@ export const deleteProductById = async (
   const productId = req.params.id;
   try {
     await deleteProductByIdService(productId);
-    res.status(200).json(`Product with id ${productId} has been deleted`).send();
+    res
+      .status(204)
+      .json(`Product with id ${productId} has been deleted`)
+      .send();
   } catch (error) {
     next(error);
   }

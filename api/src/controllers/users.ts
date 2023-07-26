@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 
-import User from "../models/user";
+import User from "../models/User";
 import {
   createUserService,
   findUserByEmailService,
@@ -59,7 +59,12 @@ export const logInWithEmail = async (
         throw new UnauthorizedError("Password is incorrect.");
       }
       const token = jwt.sign(
-        { email: userData.email, _id: userData._id },
+        {
+          email: userData.email,
+          _id: userData._id,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+        },
         JWT_SECRET,
         {
           expiresIn: "30m",
@@ -113,7 +118,7 @@ export const deleteUserById = async (
   const userId = req.params.id;
   try {
     await deleteUserByIdService(userId);
-    res.status(200).json();
+    res.status(204).json();
   } catch (error) {
     next(error);
   }

@@ -1,4 +1,4 @@
-import Product, { ProductDocument } from "../models/product";
+import Product, { ProductDocument } from "../models/Product";
 import { NotFoundError } from "../helpers/apiError";
 
 export const createProductService = async (
@@ -38,7 +38,7 @@ export const updateProductByIdService = async (
 
 export const deleteProductByIdService = async (
   productId: string
-): Promise<ProductDocument | undefined | null> => {
+): Promise<ProductDocument> => {
   const deletedProduct = await Product.findByIdAndDelete(productId);
   if (deletedProduct) {
     return deletedProduct;

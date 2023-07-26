@@ -7,7 +7,7 @@ export type ProductDocument = Document & {
   price: number;
   material: string[];
   color: string;
-  images: string[];
+  image: string[];
 };
 
 export const ProductSchema = new mongoose.Schema({
@@ -33,7 +33,7 @@ export const ProductSchema = new mongoose.Schema({
   color: {
     type: String,
   },
-  images: {
+  image: {
     type: [String],
     required: true,
   },
