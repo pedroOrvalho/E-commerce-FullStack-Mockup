@@ -4,6 +4,7 @@ import { Order } from "../../types/type";
 type InitialState = {
   orderList: Order[];
   order: Order;
+  isLoading: boolean;
 };
 
 const initialState: InitialState = {
@@ -13,6 +14,7 @@ const initialState: InitialState = {
     productList: [],
     createdAt: "",
   },
+  isLoading: true,
 };
 
 const orderSlice = createSlice({
@@ -21,13 +23,15 @@ const orderSlice = createSlice({
   reducers: {
     getOrderListByUserId: (state, { payload }: PayloadAction<Order[]>) => {
       state.orderList = payload;
+      state.isLoading = false;
     },
-    getOrderByUserId: (state, { payload }: PayloadAction<Order>) => {
+    getOrderById: (state, { payload }: PayloadAction<Order>) => {
       state.order = payload;
+      state.isLoading = false;
     },
   },
 });
 
-export const { getOrderListByUserId, getOrderByUserId } = orderSlice.actions;
+export const { getOrderListByUserId, getOrderById } = orderSlice.actions;
 const orderReducer = orderSlice.reducer;
 export default orderReducer;

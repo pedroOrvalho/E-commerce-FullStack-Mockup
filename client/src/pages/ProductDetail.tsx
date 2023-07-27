@@ -1,23 +1,28 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
 import { useParams } from "react-router-dom";
 
+import { AppDispatch, RootState } from "../redux/store";
 import ProductSlider from "../components/Products/ProductSlider";
 import ProductItemInfo from "../components/Products/ProductItemInfo";
 import { fetchProductById } from "../redux/thunk/products";
+import IsLoading from "../components/IsLoading";
 
 import { Box } from "@mui/material";
 
 export default function ProductDetail() {
+  const isLoading = useSelector((state: RootState) => state.products.isLoading);
+  const product = useSelector((state: RootState) => state.products.product);
   const dispatchThunk = useDispatch<AppDispatch>();
   const { id } = useParams();
-  const product = useSelector((state: RootState) => state.products.product);
 
   useEffect(() => {
     dispatchThunk(fetchProductById(id));
   }, [id, dispatchThunk]);
 
+  if (isLoading) {
+    return <IsLoading isLoading={isLoading} />;
+  }
   return (
     <Box
       flexGrow={1}

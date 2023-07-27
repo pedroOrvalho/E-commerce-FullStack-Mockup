@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 
-import { createOrderService, getOrdersByIdService } from "../services/orders";
+import {
+  createOrderService,
+  getOrderByIdService,
+  getOrdersByUserIdService,
+} from "../services/orders";
 import Order from "../models/order";
 
 export const createOrder = async (
@@ -20,7 +24,7 @@ export const createOrder = async (
   }
 };
 
-export const getOrdersById = async (
+export const getOrdersByUserId = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -28,8 +32,22 @@ export const getOrdersById = async (
   const userId = req.params.id;
 
   try {
-    const orderList = await getOrdersByIdService(userId);
+    const orderList = await getOrdersByUserIdService(userId);
     res.status(200).json(orderList);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getOrderById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const orderId = req.params.id;
+  try {
+    const order = await getOrderByIdService(orderId);
+    res.status(200).json(order);
   } catch (error) {
     next(error);
   }

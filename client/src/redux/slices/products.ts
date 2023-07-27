@@ -5,6 +5,7 @@ import { Product } from "../../types/type";
 type InitialState = {
   productsList: Product[];
   product: Product;
+  isLoading: boolean;
 };
 
 const initialState: InitialState = {
@@ -19,6 +20,7 @@ const initialState: InitialState = {
     color: "",
     image: [],
   },
+  isLoading: true,
 };
 
 const productsSlice = createSlice({
@@ -27,9 +29,11 @@ const productsSlice = createSlice({
   reducers: {
     getAllProducts: (state, action: PayloadAction<Product[]>) => {
       state.productsList = action.payload;
+      state.isLoading = false;
     },
     getProductById: (state, action: PayloadAction<Product>) => {
       state.product = action.payload;
+      state.isLoading = false;
     },
   },
 });

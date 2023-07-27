@@ -7,8 +7,6 @@ import { TableRow, TableCell, Box } from "@mui/material";
 
 import { CartProduct } from "../../types/type";
 
-import pict from "../../images/image_cc236329-c3df-4336-a3c7-f92d32061a1a_600x.webp";
-
 type Props = {
   cartItem: CartProduct;
 };
@@ -21,9 +19,9 @@ export default function CartTableBodyItem({ cartItem }: Props) {
   }
 
   return (
-    <TableRow sx={{}} className="cartItem_container">
+    <TableRow className="cartItem_container">
       <TableCell className="cartItem_image_container">
-        <img src={pict} alt={cartItem.title} />
+        <img src={cartItem.image[0]} alt={cartItem.title} />
       </TableCell>
       <TableCell sx={{ pl: 0, pr: 0, minWidth: "215px" }}>
         <Box className="cartItem_info">

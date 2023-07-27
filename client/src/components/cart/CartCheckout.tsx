@@ -12,6 +12,11 @@ export default function CartCheckout() {
   const token = localStorage.getItem("userToken");
   const navigate = useNavigate();
 
+  const total = cart.reduce<number>((accumulator, current) => {
+    const productTotal = current.price * current.quantity;
+    return accumulator + productTotal;
+  }, 0);
+
   function onClickHandler() {
     const endpoint = `http://localhost:4000/orders/${userId}`;
     axios
@@ -140,7 +145,7 @@ export default function CartCheckout() {
                 fontSize: "1.2rem",
               }}
             >
-              1002 €
+              {total} €
             </Typography>
             <Typography
               component="h2"
@@ -202,7 +207,7 @@ export default function CartCheckout() {
               fontSize: "1.2rem",
             }}
           >
-            1090.4 €
+            {(total + 0.23 * total).toFixed(2)} €
           </Typography>
         </Box>
         <Box

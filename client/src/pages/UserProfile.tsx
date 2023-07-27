@@ -19,10 +19,14 @@ import {
 } from "@mui/material";
 
 import { User } from "../types/type";
+import IsLoading from "../components/IsLoading";
 
 export default function UserProfile() {
+  const isLoading = useSelector((state: RootState) => state.user.isLoading);
+
   const userInfo = useSelector((state: RootState) => state.user.user);
   const [userNewInfo, setUserNewInfo] = useState<User>(userInfo);
+
   const dispatchThunk = useDispatch<AppDispatch>();
   const dispatch = useDispatch();
   const userId = localStorage.getItem("_id");
@@ -31,7 +35,11 @@ export default function UserProfile() {
 
   useEffect(() => {
     dispatchThunk(fetchUserById(userId, navigate));
-  }, [dispatchThunk, userId]);
+  }, [dispatchThunk, userId, navigate]);
+
+  useEffect(() => {
+    setUserNewInfo(userInfo);
+  }, [userInfo]);
 
   function handleFirstName(event: React.ChangeEvent<HTMLInputElement>) {
     setUserNewInfo({
@@ -77,6 +85,9 @@ export default function UserProfile() {
       });
   }
 
+  if (isLoading) {
+    return <IsLoading isLoading={isLoading} />;
+  }
   return (
     <div>
       <Container

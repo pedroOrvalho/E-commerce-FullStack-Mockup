@@ -4,6 +4,7 @@ import { User } from "../../types/type";
 
 type InitialState = {
   user: User;
+  isLoading: boolean;
 };
 
 const initialState: InitialState = {
@@ -13,6 +14,7 @@ const initialState: InitialState = {
     lastName: "",
     email: "",
   },
+  isLoading: true,
 };
 
 const userSlice = createSlice({
@@ -21,6 +23,7 @@ const userSlice = createSlice({
   reducers: {
     getUserInfo: (state, { payload }: PayloadAction<User>) => {
       state.user = payload;
+      state.isLoading = false;
     },
   },
 });

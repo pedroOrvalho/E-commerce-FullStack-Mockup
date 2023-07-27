@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import { IconButton } from "@mui/material";
+import { Badge, IconButton } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 export default function FavoritesDrawer() {
@@ -37,7 +37,9 @@ export default function FavoritesDrawer() {
   return (
     <Box>
       <IconButton onClick={toggleDrawer(true)}>
-        <FavoriteBorderOutlinedIcon />
+        <Badge variant="dot" badgeContent={favoriteList.length} color="error">
+          <FavoriteBorderOutlinedIcon />
+        </Badge>
       </IconButton>
 
       <Drawer anchor="right" open={state} onClose={toggleDrawer(false)}>

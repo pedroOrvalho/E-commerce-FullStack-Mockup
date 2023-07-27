@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import FavoritesDrawer from "../favorites/FavoritesDrawer";
@@ -13,6 +13,9 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import Badge from "@mui/material/Badge";
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 const theme = createTheme({
   typography: {
@@ -21,9 +24,8 @@ const theme = createTheme({
 });
 
 export default function Nav() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const cart = useSelector((state: RootState) => state.cart.cart);
 
   return (
     <ThemeProvider theme={theme}>
@@ -83,7 +85,9 @@ export default function Nav() {
             <FavoritesDrawer />
             <Link to={"/cart"}>
               <IconButton>
-                <ShoppingBagOutlinedIcon />
+                <Badge badgeContent={cart.length}>
+                  <ShoppingBagOutlinedIcon />
+                </Badge>
               </IconButton>
             </Link>
           </Stack>

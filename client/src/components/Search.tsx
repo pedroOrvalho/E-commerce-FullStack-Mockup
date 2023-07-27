@@ -31,7 +31,7 @@ export default function Search({
   };
 
   return (
-    <div className="search_container">
+    <Box className="search_container">
       <div className="search_icon">
         <SearchOutlinedIcon fontSize="large" />
       </div>
@@ -40,9 +40,9 @@ export default function Search({
         value={searchValue}
         onChange={onChangeHandler}
         placeholder="search products..."
-        fullWidth
         variant="outlined"
         sx={{
+          width: "20rem",
           "& .MuiOutlinedInput-root": {
             "&:hover fieldset": {
               borderColor: "inherit",
@@ -65,9 +65,9 @@ export default function Search({
           fullWidth
           sx={{
             "& .MuiInputLabel-root": {
-              color: "black", 
+              color: "black",
               "&.Mui-focused": {
-                color: "black", 
+                color: "black",
               },
             },
             "& .MuiOutlinedInput-root": {
@@ -91,6 +91,6 @@ export default function Search({
           </Select>
         </FormControl>
       </Box>
-    </div>
+    </Box>
   );
 }

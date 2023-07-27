@@ -7,7 +7,6 @@ import { addToCart } from "../../redux/slices/cart";
 import { Box } from "@mui/material";
 
 import { Favorite } from "../../types/type";
-import pict from "../../images/ceramic-gba0ffcf60_1280.jpg";
 
 type Props = {
   favorite: Favorite;
@@ -25,7 +24,7 @@ export default function FavoritesListItem({ favorite, setState }: Props) {
   return (
     <Box key={favorite._id} className="favoritesItem_container">
       <Box className="favoritesItem_image_container">
-        <img src={pict} alt={favorite.title} />
+        <img src={favorite.image[0]} alt={favorite.title} />
       </Box>
       <Box className="favoritesItem_info_container">
         <Box className="favoritesInfo">

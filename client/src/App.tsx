@@ -9,9 +9,10 @@ import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
+import OrderList from "./pages/OrderList";
+import OrderDetail from "./pages/OrderDetail";
 
 import "./App.css";
-import Order from "./pages/OrderList";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/my-profile" element={<UserProfile />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/my-orders" element={<Order />} />
+        <Route path="/my-orders" element={<OrderList />} />
+        <Route path="/my-orders/:id" element={<OrderDetail />} />
       </Routes>
       <Footer />
     </div>
