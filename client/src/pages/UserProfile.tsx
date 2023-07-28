@@ -23,10 +23,8 @@ import IsLoading from "../components/IsLoading";
 
 export default function UserProfile() {
   const isLoading = useSelector((state: RootState) => state.user.isLoading);
-
   const userInfo = useSelector((state: RootState) => state.user.user);
   const [userNewInfo, setUserNewInfo] = useState<User>(userInfo);
-
   const dispatchThunk = useDispatch<AppDispatch>();
   const dispatch = useDispatch();
   const userId = localStorage.getItem("_id");
