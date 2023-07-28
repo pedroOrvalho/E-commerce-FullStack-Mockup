@@ -34,7 +34,12 @@ export default function UserProfile() {
   const token = localStorage.getItem("userToken");
 
   useEffect(() => {
-    dispatchThunk(fetchUserById(userId, navigate));
+    if (userId) {
+      dispatchThunk(fetchUserById(userId, navigate));
+    } else {
+      alert("Please login first");
+      navigate("/login");
+    }
   }, [dispatchThunk, userId, navigate]);
 
   useEffect(() => {

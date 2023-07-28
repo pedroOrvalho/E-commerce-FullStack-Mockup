@@ -2,10 +2,13 @@ import axios from "axios";
 
 import { getOrderById, getOrderListByUserId } from "../slices/order";
 import { AppDispatch } from "../store";
+const userToken = localStorage.getItem("userToken");
 
-const token = localStorage.getItem("userToken");
-const userId = localStorage.getItem("_id");
-export function fetchOrderListByUserId(navigate: Function) {
+export function fetchOrderListByUserId(
+  userId: string | null,
+  token: string | null,
+  navigate: Function
+) {
   return (dispatch: AppDispatch) => {
     axios
       .get(`http://localhost:4000/orders/${userId}`, {
@@ -15,7 +18,6 @@ export function fetchOrderListByUserId(navigate: Function) {
         },
       })
       .then((res) => {
-        console.log(res.data);
         dispatch(getOrderListByUserId(res.data));
       })
       .catch((error) => {
@@ -36,7 +38,7 @@ export function fetchOrderById(
       .get(`http://localhost:4000/orders/detail/${orderId}`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${userToken}`,
         },
       })
       .then((res) => {

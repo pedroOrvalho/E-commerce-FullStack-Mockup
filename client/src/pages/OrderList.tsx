@@ -14,10 +14,17 @@ export default function OrderList() {
   const isLoading = useSelector((state: RootState) => state.order.isLoading);
   const dispatchThunk = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const userId = localStorage.getItem("_id");
+  const token = localStorage.getItem("userToken");
 
   useEffect(() => {
-    dispatchThunk(fetchOrderListByUserId(navigate));
-  }, [dispatchThunk, navigate]);
+    if (userId) {
+      dispatchThunk(fetchOrderListByUserId(userId, token, navigate));
+    } else {
+      alert("Please login first");
+      navigate("/login");
+    }
+  }, [dispatchThunk, navigate, userId, token]);
 
   if (isLoading) {
     <IsLoading isLoading={isLoading} />;
