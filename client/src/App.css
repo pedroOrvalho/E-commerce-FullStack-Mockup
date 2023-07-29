@@ -2,6 +2,9 @@
   height: fit-content;
 }
 
+.link {
+  text-decoration: none;
+}
 /*------------------------------ NAV ------------------------------*/
 .nav_link {
   text-decoration: none;
@@ -393,7 +396,6 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-
 
 /*------------------------------ ORDER ------------------------------*/
 

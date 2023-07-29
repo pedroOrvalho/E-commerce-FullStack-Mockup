@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 
-import { Box } from "@mui/material";
+import IsLoading from "../IsLoading";
 
+import { Box } from "@mui/material";
 import { Product } from "../../types/type";
 
 type ProductSliderProps = {
@@ -10,7 +12,17 @@ type ProductSliderProps = {
 
 export default function ProductSlider({ product }: ProductSliderProps) {
   const productImages = product.image;
+  const [imagesLoading, setImagesLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setImagesLoading(false);
+    }, 500);
+  }, []);
+
+  if (imagesLoading) {
+    return <IsLoading isLoading={imagesLoading} />;
+  }
   return (
     <Box
       sx={{ display: "flex", justifyContent: "center", alignContent: "center" }}

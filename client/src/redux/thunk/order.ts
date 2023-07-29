@@ -2,7 +2,6 @@ import axios from "axios";
 
 import { getOrderById, getOrderListByUserId } from "../slices/order";
 import { AppDispatch } from "../store";
-const userToken = localStorage.getItem("userToken");
 
 export function fetchOrderListByUserId(
   userId: string | null,
@@ -31,6 +30,7 @@ export function fetchOrderListByUserId(
 
 export function fetchOrderById(
   orderId: string | undefined,
+  token: string | null,
   navigate: Function
 ) {
   return (dispatch: AppDispatch) => {
@@ -38,7 +38,7 @@ export function fetchOrderById(
       .get(`http://localhost:4000/orders/detail/${orderId}`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
