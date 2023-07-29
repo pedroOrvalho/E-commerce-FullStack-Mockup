@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 
-import User from "../models/Users";
+import User from "../models/User";
 import {
   createUserService,
   findUserByEmailService,
