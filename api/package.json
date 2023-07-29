@@ -2,6 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
