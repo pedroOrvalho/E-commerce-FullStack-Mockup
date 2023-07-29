@@ -28,6 +28,6 @@
     "start": "nodemon --watch \"src/*\" --ext \"ts,json\" --ignore \"src//.spec.ts\" --exec \"ts-node src/server.ts\""
   },
   "engines": {
-    "node": ">=14.20.1"
+    "node": ">=16.0.0"
   }
 }
