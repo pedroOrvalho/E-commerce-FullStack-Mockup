@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import ApiError from "../helpers/apiError";
 
-export default function (req: Request, res: Response, error: ApiError) {
+export default function (error: ApiError, req: Request, res: Response) {
   res.status(error.statusCode).json({
     status: "error",
     statusCode: error.statusCode,
