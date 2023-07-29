@@ -1,4 +1,4 @@
-import Order, { OrderDocument } from "../models/Orders";
+import Order, { OrderDocument } from "../models/Order";
 import { NotFoundError } from "../helpers/apiError";
 
 export const createOrderService = async (
