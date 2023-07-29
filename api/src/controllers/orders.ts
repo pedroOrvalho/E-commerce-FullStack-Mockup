@@ -5,7 +5,7 @@ import {
   getOrderByIdService,
   getOrdersByUserIdService,
 } from "../services/orders";
-import Order from "../models/order";
+import Order from "../models/Orders";
 
 export const createOrder = async (
   req: Request,

@@ -1,4 +1,4 @@
-import Product, { ProductDocument } from "../models/Product";
+import Product, { ProductDocument } from "../models/Products";
 import { NotFoundError } from "../helpers/apiError";
 
 export const createProductService = async (

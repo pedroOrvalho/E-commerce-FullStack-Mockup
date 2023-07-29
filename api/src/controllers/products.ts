@@ -7,7 +7,7 @@ import {
   updateProductByIdService,
   deleteProductByIdService,
 } from "../services/products";
-import Product from "../models/Product";
+import Product from "../models/Products";
 
 export const createProduct = async (
   req: Request,

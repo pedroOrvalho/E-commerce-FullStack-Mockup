@@ -1,4 +1,4 @@
-import User, { UserDocument } from "../models/User";
+import User, { UserDocument } from "../models/Users";
 import { NotFoundError } from "../helpers/apiError";
 
 export const createUserService = async (
