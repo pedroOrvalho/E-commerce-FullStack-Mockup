@@ -34,7 +34,7 @@ export default function SignIn() {
   const dispatch = useDispatch();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:4000/users/login";
+    const endpoint = "https://backend-t7tx.onrender.com/users/login";
     axios
       .post(endpoint, userInfo)
       .then((res) => {

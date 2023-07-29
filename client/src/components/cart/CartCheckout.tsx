@@ -18,7 +18,7 @@ export default function CartCheckout() {
   }, 0);
 
   function onClickHandler() {
-    const endpoint = `http://localhost:4000/orders/${userId}`;
+    const endpoint = `https://backend-t7tx.onrender.com/orders/${userId}`;
     axios
       .post(endpoint, cart, {
         headers: {

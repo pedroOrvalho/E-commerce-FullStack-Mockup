@@ -52,7 +52,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:4000/users";
+    const endpoint = "https://backend-t7tx.onrender.com/users";
 
     axios
       .post(endpoint, userInfo)
