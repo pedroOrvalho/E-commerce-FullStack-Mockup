@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/mongoose": "^5.11.97",
+    "@types/typescript": "^2.0.0"
+  }
+}
