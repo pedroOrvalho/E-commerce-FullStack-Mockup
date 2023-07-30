@@ -40,3 +40,8 @@ The website has at least these pages: landing page, product page, product detail
 **_MAKE THE WEBSITE AS BEAUTIFUL AS MUCH AS YOU CAN_**
 
 **_DEADLINE 28/07/2023_**
+
+
+## Deployment Links
+- FrontEnd: https://frontend-oltx.onrender.com
+- BackEnd: https://backend-t7tx.onrender.com
