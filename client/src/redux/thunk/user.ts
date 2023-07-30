@@ -5,7 +5,7 @@ import { AppDispatch } from "../store";
 
 export function fetchUserById(id: string | null, navigate: Function) {
   const token = localStorage.getItem("userToken");
-  const url = `https://localhost:4000/users/${id}`;
+  const url = `http://localhost:4000/users/${id}`;
 
   return (dispatch: AppDispatch) => {
     axios

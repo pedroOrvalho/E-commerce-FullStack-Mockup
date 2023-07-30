@@ -34,7 +34,7 @@ export default function SignIn() {
   const dispatch = useDispatch();
 
   function onClickHandler() {
-    const endpoint = "https://localhost:4000/users/login";
+    const endpoint = "http://localhost:4000/users/login";
     axios
       .post(endpoint, userInfo)
       .then((res) => {

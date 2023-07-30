@@ -18,7 +18,7 @@ export default function CartCheckout() {
   }, 0);
 
   function onClickHandler() {
-    const endpoint = `https://localhost:4000/orders/${userId}`;
+    const endpoint = `http://localhost:4000/orders/${userId}`;
     axios
       .post(endpoint, cart, {
         headers: {

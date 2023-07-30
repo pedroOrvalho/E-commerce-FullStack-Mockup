@@ -10,7 +10,7 @@ export function fetchOrderListByUserId(
 ) {
   return (dispatch: AppDispatch) => {
     axios
-      .get(`https://localhost:4000/orders/${userId}`, {
+      .get(`http://localhost:4000/orders/${userId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ export function fetchOrderById(
 ) {
   return (dispatch: AppDispatch) => {
     axios
-      .get(`https://localhost:4000/orders/detail/${orderId}`, {
+      .get(`http://localhost:4000/orders/detail/${orderId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

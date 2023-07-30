@@ -64,7 +64,7 @@ export default function UserProfile() {
   }
 
   function onClickHandler() {
-    const endpoint = `https://localhost:4000/users/${userInfo._id}`;
+    const endpoint = `http://localhost:4000/users/${userInfo._id}`;
 
     axios
       .put(endpoint, userNewInfo, {
