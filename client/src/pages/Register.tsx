@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { BASE_URL } from "../Api";
 
@@ -8,7 +8,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -26,7 +25,7 @@ function Copyright(props: any) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="#">
+      <Link color="inherit" to="https://frontend-oltx.onrender.com">
         Terra Quente
       </Link>{" "}
       {new Date().getFullYear()}
@@ -258,9 +257,7 @@ export default function Register() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+                <Link to="/login">Already have an account? Sign in</Link>
               </Grid>
             </Grid>
           </Box>
