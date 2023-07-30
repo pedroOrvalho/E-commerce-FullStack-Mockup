@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { RootState } from "../../redux/store";
+import { BASE_URL } from "../../Api";
 
 import { Box, Button, Typography } from "@mui/material";
 
@@ -18,7 +19,7 @@ export default function CartCheckout() {
   }, 0);
 
   function onClickHandler() {
-    const endpoint = `http://localhost:4000/orders/${userId}`;
+    const endpoint = `${BASE_URL}/orders/${userId}`;
     axios
       .post(endpoint, cart, {
         headers: {

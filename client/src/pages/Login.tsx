@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 
 import { getUserInfo } from "../redux/slices/user";
+import { BASE_URL, FRONTEND_BASE_URL } from "../Api";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -34,7 +35,7 @@ export default function SignIn() {
   const dispatch = useDispatch();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:4000/users/login";
+    const endpoint = `${BASE_URL}/users/login`;
     axios
       .post(endpoint, userInfo)
       .then((res) => {
@@ -179,7 +180,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="http://localhost:3000/register" variant="body2">
+                <Link href={`${FRONTEND_BASE_URL}/register`} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { getOrderById, getOrderListByUserId } from "../slices/order";
 import { AppDispatch } from "../store";
+import { BASE_URL } from "../../Api";
 
 export function fetchOrderListByUserId(
   userId: string | null,
@@ -10,7 +11,7 @@ export function fetchOrderListByUserId(
 ) {
   return (dispatch: AppDispatch) => {
     axios
-      .get(`http://localhost:4000/orders/${userId}`, {
+      .get(`${BASE_URL}/orders/${userId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -35,7 +36,7 @@ export function fetchOrderById(
 ) {
   return (dispatch: AppDispatch) => {
     axios
-      .get(`http://localhost:4000/orders/detail/${orderId}`, {
+      .get(`${BASE_URL}/orders/detail/${orderId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

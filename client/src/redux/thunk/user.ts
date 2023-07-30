@@ -2,10 +2,11 @@ import axios from "axios";
 
 import { getUserInfo } from "../slices/user";
 import { AppDispatch } from "../store";
+import { BASE_URL } from "../../Api";
 
 export function fetchUserById(id: string | null, navigate: Function) {
   const token = localStorage.getItem("userToken");
-  const url = `http://localhost:4000/users/${id}`;
+  const url = `${BASE_URL}/users/${id}`;
 
   return (dispatch: AppDispatch) => {
     axios

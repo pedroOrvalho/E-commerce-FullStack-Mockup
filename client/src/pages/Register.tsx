@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import { BASE_URL, FRONTEND_BASE_URL } from "../Api";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -52,7 +54,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:4000/users";
+    const endpoint = `${BASE_URL}/users`;
 
     axios
       .post(endpoint, userInfo)
@@ -256,7 +258,7 @@ export default function Register() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="http://localhost:3000/login" variant="body2">
+                <Link href={`${FRONTEND_BASE_URL}/login`} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

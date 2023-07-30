@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import { fetchUserById } from "../redux/thunk/user";
 import { getUserInfo } from "../redux/slices/user";
+import { BASE_URL } from "../Api";
+import IsLoading from "../components/IsLoading";
 
 import {
   Box,
@@ -19,7 +21,6 @@ import {
 } from "@mui/material";
 
 import { User } from "../types/type";
-import IsLoading from "../components/IsLoading";
 
 export default function UserProfile() {
   const isLoading = useSelector((state: RootState) => state.user.isLoading);
@@ -64,7 +65,7 @@ export default function UserProfile() {
   }
 
   function onClickHandler() {
-    const endpoint = `http://localhost:4000/users/${userInfo._id}`;
+    const endpoint = `${BASE_URL}/users/${userInfo._id}`;
 
     axios
       .put(endpoint, userNewInfo, {
