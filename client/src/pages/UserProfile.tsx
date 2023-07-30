@@ -64,7 +64,7 @@ export default function UserProfile() {
   }
 
   function onClickHandler() {
-    const endpoint = `https://backend-t7tx.onrender.com/users/${userInfo._id}`;
+    const endpoint = `https://localhost:4000/users/${userInfo._id}`;
 
     axios
       .put(endpoint, userNewInfo, {

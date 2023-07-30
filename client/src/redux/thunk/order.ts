@@ -10,7 +10,7 @@ export function fetchOrderListByUserId(
 ) {
   return (dispatch: AppDispatch) => {
     axios
-      .get(`https://backend-t7tx.onrender.com/orders/${userId}`, {
+      .get(`https://localhost:4000/orders/${userId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ export function fetchOrderById(
 ) {
   return (dispatch: AppDispatch) => {
     axios
-      .get(`https://backend-t7tx.onrender.com/orders/detail/${orderId}`, {
+      .get(`https://localhost:4000/orders/detail/${orderId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
