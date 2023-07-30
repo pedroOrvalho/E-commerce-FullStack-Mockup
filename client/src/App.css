@@ -48,9 +48,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: hsla(79, 43%, 28%, 0.748);
 }
 
 /*------------------------------ PRODUCTS------------------------------*/
