@@ -34,7 +34,8 @@ export default function Nav() {
           margin: 0,
           padding: 0,
           height: "4rem",
-          backgroundColor: "hsla(144, 35%, 40%, 0.25)",
+          backgroundColor: "hsla(29, 40%, 72%, 0.644)",
+          borderBottom: "1px solid hsla(0, 0%, 0%, 0.2)",
         }}
         maxWidth={false}
       >

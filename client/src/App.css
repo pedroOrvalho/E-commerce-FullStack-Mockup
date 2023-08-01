@@ -1,5 +1,6 @@
-.app {
-  height: fit-content;
+.App {
+
+  background-color: hsla(48, 44%, 85%, 0.35);
 }
 
 .link {
@@ -37,18 +38,6 @@
 
 .nav_link:hover::after {
   width: 100%;
-}
-
-/*------------------------------ FOOTER ------------------------------*/
-
-/*------------------------------ HOMEPAGE ------------------------------*/
-.homepage_container {
-  height: 48rem;
-  background-image: url("./images/chloe-bolton-R0qthXq3jec-unsplash.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: hsla(79, 43%, 28%, 0.748);
 }
 
 /*------------------------------ PRODUCTS------------------------------*/
@@ -400,3 +389,11 @@
 .order_img {
   padding: 10px;
 }
+
+/*
+color scheme:
+color: hsla(29, 21%, 53%, 0.944);
+
+
+
+*/

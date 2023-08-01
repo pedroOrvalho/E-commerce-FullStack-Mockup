@@ -229,9 +229,9 @@ export default function CartCheckout() {
               textTransform: "capitalize",
               letterSpacing: "0.2rem",
               fontSize: "1rem",
-              bgcolor: "hsla(0, 0%, 0%, 1)",
+              bgcolor: "hsla(10, 47%, 67%, 0.957)",
               "&:hover": {
-                bgcolor: "hsla(0, 0%, 0%, 0.8)",
+                bgcolor: "hsla(10, 47%, 77%, 0.957)",
               },
             }}
             onClick={onClickHandler}
