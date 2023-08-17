@@ -8,6 +8,7 @@ import {
   deleteUserById,
   getUserById,
 } from "../controllers/users";
+import adminCheck from "../middlewares/adminCheck";
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.put(
 router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
+  adminCheck,
   deleteUserById
 );
 
